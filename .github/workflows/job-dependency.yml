@@ -1,0 +1,20 @@
+name: Job Dependency Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Job 1 Step
+        run: echo "This is Job 1 — doing some work"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: Job 2 Step
+        run: echo "This is Job 2 — running only after Job 1 succeeds"
